@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package database_proto;
+
+option go_package = "./database_proto";
+
+service DatabaseService{
+  rpc AddLink (AddLinkRequest) returns (AddLinkResponse);
+  rpc GetFullLink (GetFullLinkRequest) returns (GetFullLinkResponse);
+}
+
+message AddLinkRequest {
+  string fullLink = 1;
+  optional string customLink = 2;
+  optional string invalidateAt = 3;
+  optional int32 numRedirects = 4;
+}
+
+message AddLinkResponse {
+  string shortenedUrl = 1;
+}
+
+message GetFullLinkRequest {
+  string shortenedUrl = 1;
+}
+
+message GetFullLinkResponse {
+  string fullLink = 1;
+}
